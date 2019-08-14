@@ -1,8 +1,8 @@
-export const removeFeature = feature => {
-  console.log("Remove this part", feature);
+export const removeFeature = name => {
+  console.log("Remove this part", name);
   return {
     type: "REMOVE_FEATURE",
-    payload: feature
+    payload: name
   };
 };
 
