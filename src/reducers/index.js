@@ -1,5 +1,5 @@
-import { removeFeature } from "../actions";
-
+export const ADD_FEATURE = "ADD_FEATURE";
+export const REMOVE_FEATURE = "REMOVE_FEATURE";
 const initialState = {
   additionalPrice: 0,
   car: {
@@ -19,33 +19,21 @@ const initialState = {
 
 export const carReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_FEATURE":
+    case ADD_FEATURE:
       return {
-        ...state, // pulls the inital state
-        car: {
-          // gives the CAR array
-          ...state.car, // pulls the car object into state
-          features: [
-            // pulls the car features array into an array
-            ...state.car.features,
-            action.payload ///pulls the features from car
-          ]
-        },
-        additionalPrice: state.additionalPrice + action.payload.price //add the price of the car with the price of the payload feature
+        ...state,
+        car: { ...state.car, features: [...state.car.features, action.payload] }
       };
-    case "REMOVE_FEATURE":
+    case REMOVE_FEATURE:
       return {
         ...state,
         car: {
           ...state.car,
-          features: [
-            state.car.features.filter(
-              features => features.name !== action.payload
-            )
-          ]
+          features: state.car.features.filter(
+            feature => feature.id !== action.payload
+          )
         }
       };
-
     default:
       return state;
   }

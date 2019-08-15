@@ -8,7 +8,7 @@ const AddedFeature = props => {
       <Button
         className="button"
         onClick={() => {
-          props.removeFeature(props.feature.name);
+          props.removeFeature(props.feature.id);
         }}
       >
         Remove
